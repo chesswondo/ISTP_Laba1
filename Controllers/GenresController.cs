@@ -42,7 +42,8 @@ namespace IJW2.Controllers
                 return NotFound();
             }
 
-            return View(genre);
+            return RedirectToAction("Index", "Records", new {id = genre.Id, name = genre.Name});
+            //return View(genre);
         }
 
         // GET: Genres/Create

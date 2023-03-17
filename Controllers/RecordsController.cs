@@ -19,11 +19,31 @@ namespace IJW2.Controllers
         }
 
         // GET: Records
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id, string? name)
         {
-              return _context.Records != null ? 
-                          View(await _context.Records.ToListAsync()) :
-                          Problem("Entity set 'WdtbContext.Records'  is null.");
+            /*return _context.Records != null ? 
+                        View(await _context.Records.ToListAsync()) :
+                        Problem("Entity set 'WdtbContext.Records'  is null.");*/
+
+            if (id == null) return View(await _context.Records.ToListAsync());
+            //if (id == null) return RedirectToAction("Genres", "Index");
+
+            ViewBag.GenreId = id;
+            ViewBag.GenreName = name;
+
+            var RecordsGenresByGenre = _context.RecordsGenres.Where(rg => rg.GenreId == id).Include(rg => rg.Genre).ToList();
+            List<int> RecordsList = new List<int>();
+            foreach (var record in RecordsGenresByGenre)
+            {
+                RecordsList.Add(record.RecordId);
+            }
+
+            var RecordsByGenre = _context.Records.Where(r => RecordsList.Contains(r.Id));
+
+            return View(await RecordsByGenre.ToListAsync());
+            //var dblibraryContext = _context.Records.Include(x => x.Artist);
+            //return View(await dblibraryContext.ToListAsync());
+
         }
 
         // GET: Records/Details/5

@@ -48,7 +48,7 @@ namespace IJW2.Controllers
         // GET: Sales/Create
         public IActionResult Create()
         {
-            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Id");
+            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Name");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace IJW2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Id", sale.RecordId);
+            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Name", sale.RecordId);
             return View(sale);
         }
 
@@ -82,7 +82,7 @@ namespace IJW2.Controllers
             {
                 return NotFound();
             }
-            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Id", sale.RecordId);
+            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Name", sale.RecordId);
             return View(sale);
         }
 
@@ -118,7 +118,7 @@ namespace IJW2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Id", sale.RecordId);
+            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Name", sale.RecordId);
             return View(sale);
         }
 

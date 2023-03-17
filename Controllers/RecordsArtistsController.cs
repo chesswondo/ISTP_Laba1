@@ -49,8 +49,8 @@ namespace IJW2.Controllers
         // GET: RecordsArtists/Create
         public IActionResult Create()
         {
-            ViewData["ArtistId"] = new SelectList(_context.Artists, "Id", "Id");
-            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Id");
+            ViewData["ArtistId"] = new SelectList(_context.Artists, "Id", "Name");
+            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Name");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace IJW2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ArtistId"] = new SelectList(_context.Artists, "Id", "Id", recordsArtist.ArtistId);
-            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Id", recordsArtist.RecordId);
+            ViewData["ArtistId"] = new SelectList(_context.Artists, "Id", "Name", recordsArtist.ArtistId);
+            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Name", recordsArtist.RecordId);
             return View(recordsArtist);
         }
 
@@ -85,8 +85,8 @@ namespace IJW2.Controllers
             {
                 return NotFound();
             }
-            ViewData["ArtistId"] = new SelectList(_context.Artists, "Id", "Id", recordsArtist.ArtistId);
-            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Id", recordsArtist.RecordId);
+            ViewData["ArtistId"] = new SelectList(_context.Artists, "Id", "Name", recordsArtist.ArtistId);
+            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Name", recordsArtist.RecordId);
             return View(recordsArtist);
         }
 
@@ -122,8 +122,8 @@ namespace IJW2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ArtistId"] = new SelectList(_context.Artists, "Id", "Id", recordsArtist.ArtistId);
-            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Id", recordsArtist.RecordId);
+            ViewData["ArtistId"] = new SelectList(_context.Artists, "Id", "Name", recordsArtist.ArtistId);
+            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Name", recordsArtist.RecordId);
             return View(recordsArtist);
         }
 

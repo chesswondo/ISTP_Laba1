@@ -1,13 +1,15 @@
 ﻿@model IEnumerable<Record>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Альбоми за жанром";
 }
 
-<h1>Index</h1>
+@*<h1>Index</h1>*@
+<h1>Альбоми за жанром @ViewBag.GenreName </h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @*<a asp-action="Create">Create New</a>*@
+    <a asp-action="Create" asp-route-id="@ViewBag.GenreId">Додати новий альбом</a>
 </p>
 <table class="table">
     <thead>
@@ -36,9 +38,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.ArtistId)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>

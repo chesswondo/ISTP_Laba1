@@ -11,7 +11,7 @@ public partial class RecordsGenre
 
     public int GenreId { get; set; }
 
-    public virtual Genre Genre { get; set; } = null!;
+    public virtual Genre? Genre { get; set; } = null!;
 
-    public virtual Record Record { get; set; } = null!;
+    public virtual Record? Record { get; set; } = null!;
 }

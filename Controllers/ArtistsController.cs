@@ -49,8 +49,8 @@ namespace IJW2.Controllers
         // GET: Artists/Create
         public IActionResult Create()
         {
-            ViewData["CountryId"] = new SelectList(_context.Countries, "Id", "Id");
-            ViewData["LabelId"] = new SelectList(_context.Labels, "Id", "Id");
+            ViewData["CountryId"] = new SelectList(_context.Countries, "Id", "Name");
+            ViewData["LabelId"] = new SelectList(_context.Labels, "Id", "Name");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace IJW2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CountryId"] = new SelectList(_context.Countries, "Id", "Id", artist.CountryId);
-            ViewData["LabelId"] = new SelectList(_context.Labels, "Id", "Id", artist.LabelId);
+            ViewData["CountryId"] = new SelectList(_context.Countries, "Id", "Name", artist.CountryId);
+            ViewData["LabelId"] = new SelectList(_context.Labels, "Id", "Name", artist.LabelId);
             return View(artist);
         }
 
@@ -85,8 +85,8 @@ namespace IJW2.Controllers
             {
                 return NotFound();
             }
-            ViewData["CountryId"] = new SelectList(_context.Countries, "Id", "Id", artist.CountryId);
-            ViewData["LabelId"] = new SelectList(_context.Labels, "Id", "Id", artist.LabelId);
+            ViewData["CountryId"] = new SelectList(_context.Countries, "Id", "Name", artist.CountryId);
+            ViewData["LabelId"] = new SelectList(_context.Labels, "Id", "Name", artist.LabelId);
             return View(artist);
         }
 
@@ -122,8 +122,8 @@ namespace IJW2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CountryId"] = new SelectList(_context.Countries, "Id", "Id", artist.CountryId);
-            ViewData["LabelId"] = new SelectList(_context.Labels, "Id", "Id", artist.LabelId);
+            ViewData["CountryId"] = new SelectList(_context.Countries, "Id", "Name", artist.CountryId);
+            ViewData["LabelId"] = new SelectList(_context.Labels, "Id", "Name", artist.LabelId);
             return View(artist);
         }
 

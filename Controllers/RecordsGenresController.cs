@@ -49,8 +49,8 @@ namespace IJW2.Controllers
         // GET: RecordsGenres/Create
         public IActionResult Create()
         {
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id");
-            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Id");
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Name");
+            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Name");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace IJW2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id", recordsGenre.GenreId);
-            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Id", recordsGenre.RecordId);
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Name", recordsGenre.GenreId);
+            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Name", recordsGenre.RecordId);
             return View(recordsGenre);
         }
 
@@ -85,8 +85,8 @@ namespace IJW2.Controllers
             {
                 return NotFound();
             }
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id", recordsGenre.GenreId);
-            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Id", recordsGenre.RecordId);
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Name", recordsGenre.GenreId);
+            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Name", recordsGenre.RecordId);
             return View(recordsGenre);
         }
 
@@ -122,8 +122,8 @@ namespace IJW2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id", recordsGenre.GenreId);
-            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Id", recordsGenre.RecordId);
+            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Name", recordsGenre.GenreId);
+            ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Name", recordsGenre.RecordId);
             return View(recordsGenre);
         }
 
