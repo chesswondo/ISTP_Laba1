@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IJW2", "IJW2.csproj", "{01404A35-D6E1-4EC7-832E-2FA11DA8D2DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01404A35-D6E1-4EC7-832E-2FA11DA8D2DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01404A35-D6E1-4EC7-832E-2FA11DA8D2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01404A35-D6E1-4EC7-832E-2FA11DA8D2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01404A35-D6E1-4EC7-832E-2FA11DA8D2DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5FD9DBD-C4C9-498D-98AE-F794A2F8065B}
+	EndGlobalSection
+EndGlobal
