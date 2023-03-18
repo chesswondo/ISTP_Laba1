@@ -159,7 +159,7 @@ namespace IJW2.Controllers
         }
 
         // GET: Records/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id, int GenreId)
         {
             if (id == null || _context.Records == null)
             {
@@ -179,20 +179,27 @@ namespace IJW2.Controllers
         // POST: Records/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, int GenreId)
         {
             if (_context.Records == null)
             {
                 return Problem("Entity set 'WdtbContext.Records'  is null.");
             }
             var @record = await _context.Records.FindAsync(id);
-            if (@record != null)
+            /*if (@record != null)
             {
                 _context.Records.Remove(@record);
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index));*/
+
+            int gd = GenreId;
+            _context.RecordsGenres.RemoveRange(_context.RecordsGenres.Where(rg => rg.GenreId == GenreId));
+            if (record != null) _context.Records.Remove(@record);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Records", new { id = GenreId, name = _context.Genres.Where(g => g.Id == GenreId).FirstOrDefault().Name });
         }
 
         private bool RecordExists(int id)

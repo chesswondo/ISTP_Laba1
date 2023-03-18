@@ -7,6 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap_slate.css" />
+    <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap_slate.min.css" />
+    <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap_state.css" />
+    <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap_state.min.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="bootstrap_slate.css" />
+    <None Remove="bootstrap_slate.min.css" />
+    <None Remove="bootstrap_state.css" />
+    <None Remove="bootstrap_state.min.css" />
+    <None Remove="_bootswatch.scss" />
+    <None Remove="_variables.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">

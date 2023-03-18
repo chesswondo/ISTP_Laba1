@@ -18,9 +18,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.ArtistId)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
@@ -54,7 +54,8 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                @Html.ActionLink("Видалити", "Delete", new {id = @item.Id, GenreId = ViewBag.GenreId})
             </td>
         </tr>
 }
