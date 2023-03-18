@@ -9,7 +9,8 @@
 
 <p>
     @*<a asp-action="Create">Create New</a>*@
-    <a asp-action="Create" asp-route-id="@ViewBag.GenreId">Додати новий альбом</a>
+    @*<a asp-action="Create" asp-route-id="@ViewBag.GenreId">Додати новий альбом</a>*@
+    @Html.ActionLink("Додати новий альбом", "Create", new {GenreId = ViewBag.GenreId})
 </p>
 <table class="table">
     <thead>

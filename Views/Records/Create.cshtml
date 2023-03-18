@@ -4,7 +4,8 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+@*<h1>Create</h1>*@
+<h1>Додавання нового альбома до жанру @ViewBag.GenreName</h1>
 
 <h4>Record</h4>
 <hr />
@@ -37,6 +38,9 @@
                 <input asp-for="Information" class="form-control" />
                 <span asp-validation-for="Information" class="text-danger"></span>
             </div>
+
+            <input type="hidden" value="@ViewBag.GenreId" name="GenreId" />
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

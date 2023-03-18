@@ -51,6 +51,7 @@ namespace IJW2.Controllers
         {
             ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Name");
             ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Name");
+
             return View();
         }
 
@@ -62,11 +63,11 @@ namespace IJW2.Controllers
         public async Task<IActionResult> Create([Bind("Id,RecordId,GenreId")] RecordsGenre recordsGenre)
         {
             if (ModelState.IsValid)
-            {
-                _context.Add(recordsGenre);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+                {
+                    _context.Add(recordsGenre);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Name", recordsGenre.GenreId);
             ViewData["RecordId"] = new SelectList(_context.Records, "Id", "Name", recordsGenre.RecordId);
             return View(recordsGenre);

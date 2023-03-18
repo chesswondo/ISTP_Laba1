@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using IJW2.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace IJW2.Controllers
 {
@@ -26,7 +27,6 @@ namespace IJW2.Controllers
                         Problem("Entity set 'WdtbContext.Records'  is null.");*/
 
             if (id == null) return View(await _context.Records.ToListAsync());
-            //if (id == null) return RedirectToAction("Genres", "Index");
 
             ViewBag.GenreId = id;
             ViewBag.GenreName = name;
@@ -41,8 +41,6 @@ namespace IJW2.Controllers
             var RecordsByGenre = _context.Records.Where(r => RecordsList.Contains(r.Id));
 
             return View(await RecordsByGenre.ToListAsync());
-            //var dblibraryContext = _context.Records.Include(x => x.Artist);
-            //return View(await dblibraryContext.ToListAsync());
 
         }
 
@@ -65,8 +63,11 @@ namespace IJW2.Controllers
         }
 
         // GET: Records/Create
-        public IActionResult Create()
+        public IActionResult Create(int GenreId)
         {
+            //return View();
+            ViewBag.GenreId = GenreId;
+            ViewBag.GenreName = _context.Genres.Where(g => g.Id == GenreId).FirstOrDefault().Name;
             return View();
         }
 
@@ -75,15 +76,35 @@ namespace IJW2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,ArtistId,Date,Quality,Information")] Record @record)
+        public async Task<IActionResult> Create(int GenreId, [Bind("Id,Name,ArtistId,Date,Quality,Information")] Record @record)
         {
-            if (ModelState.IsValid)
+            /*if (ModelState.IsValid)
             {
                 _context.Add(@record);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(@record);
+            return View(@record);*/
+
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(@record);
+                await _context.SaveChangesAsync();
+
+                var rg = new RecordsGenre
+                {
+                    //Id = Guid.NewGuid().GetHashCode(),
+                    RecordId = @record.Id,
+                    GenreId = GenreId,
+                };
+
+                _context.RecordsGenres.Add(rg);
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Records", new { id = GenreId, name = _context.Genres.Where(g => g.Id == GenreId).FirstOrDefault().Name});
+            }
+
+            return RedirectToAction("Index", "Records", new { id = GenreId, name = _context.Genres.Where(g => g.Id == GenreId).FirstOrDefault().Name });
         }
 
         // GET: Records/Edit/5
