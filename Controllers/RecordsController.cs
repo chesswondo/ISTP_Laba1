@@ -41,7 +41,7 @@ namespace IJW2.Controllers
 
             var RecordsByGenre = _context.Records.Where(r => RecordsList.Contains(r.Id));
 
-            return View(await RecordsByGenre.ToListAsync());
+            return View(await RecordsByGenre.OrderBy(x => x.Name).ToListAsync());
 
         }
 

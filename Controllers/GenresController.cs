@@ -22,9 +22,9 @@ namespace IJW2.Controllers
         // GET: Genres
         public async Task<IActionResult> Index()
         {
-              return _context.Genres != null ? 
-                          View(await _context.Genres.ToListAsync()) :
-                          Problem("Entity set 'WdtbContext.Genres'  is null.");
+            return _context.Genres != null ?
+                        View(await _context.Genres.OrderBy(x => x.Name).ToListAsync()) :
+                        Problem("Entity set 'WdtbContext.Genres'  is null.");
         }
 
         // GET: Genres/Details/5
