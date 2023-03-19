@@ -77,7 +77,7 @@ namespace IJW2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int GenreId, [Bind("Id,Name,ArtistId,Date,Quality,Information")] Record @record)
+        public async Task<IActionResult> Create(int GenreId, [Bind("Id,Name,Date,Quality,Information")] Record @record)
         {
             /*if (ModelState.IsValid)
             {
