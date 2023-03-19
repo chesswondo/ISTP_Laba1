@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using IJW2.Models;
 using static System.Net.Mime.MediaTypeNames;
+using System.IO;
 
 namespace IJW2.Controllers
 {
@@ -159,8 +160,21 @@ namespace IJW2.Controllers
         }
 
         // GET: Records/Delete/5
+        
         public async Task<IActionResult> Delete(int id, int GenreId)
         {
+            //ViewBag.GenreId = GenreId;
+            //ViewBag.Id = id;
+            using (StreamWriter writer = new StreamWriter("text_id.txt", false))
+            {
+                await writer.WriteLineAsync(id.ToString());
+            }
+
+            using (StreamWriter writer = new StreamWriter("text_genre.txt", false))
+            {
+                await writer.WriteLineAsync(GenreId.ToString());
+            }
+
             if (id == null || _context.Records == null)
             {
                 return NotFound();
@@ -176,16 +190,30 @@ namespace IJW2.Controllers
             return View(@record);
         }
 
+
+        
         // POST: Records/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id, int GenreId)
         {
+            int del_Id;
+            int del_genId;
+            using (StreamReader reader = new StreamReader("text_id.txt"))
+            {
+                del_Id = Convert.ToInt32(await reader.ReadToEndAsync());
+            }
+
+            using (StreamReader reader = new StreamReader("text_genre.txt"))
+            {
+                del_genId = Convert.ToInt32(await reader.ReadToEndAsync());
+            }
+
             if (_context.Records == null)
             {
                 return Problem("Entity set 'WdtbContext.Records'  is null.");
             }
-            var @record = await _context.Records.FindAsync(id);
+            var @record = await _context.Records.FindAsync(del_Id);
             /*if (@record != null)
             {
                 _context.Records.Remove(@record);
@@ -194,12 +222,12 @@ namespace IJW2.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));*/
 
-            int gd = GenreId;
-            _context.RecordsGenres.RemoveRange(_context.RecordsGenres.Where(rg => rg.GenreId == GenreId));
+            //int gd = ViewBag.GenreId;
+            _context.RecordsGenres.RemoveRange(_context.RecordsGenres.Where(rg => rg.RecordId == del_Id));
             if (record != null) _context.Records.Remove(@record);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index", "Records", new { id = GenreId, name = _context.Genres.Where(g => g.Id == GenreId).FirstOrDefault().Name });
+            return RedirectToAction("Index", "Records", new { id = del_genId, name = _context.Genres.Where(g => g.Id == del_genId).FirstOrDefault().Name });
         }
 
         private bool RecordExists(int id)
