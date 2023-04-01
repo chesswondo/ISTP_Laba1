@@ -1,4 +1,4 @@
-namespace IJW2.Models
+namespace MusBase.Models
 {
     public class ErrorViewModel
     {

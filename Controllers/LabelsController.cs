@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using IJW2;
-using IJW2.Models;
+using MusBase;
+using MusBase.Models;
 
-namespace IJW2.Controllers
+namespace MusBase.Controllers
 {
     public class LabelsController : Controller
     {
@@ -23,7 +23,7 @@ namespace IJW2.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Labels != null ? 
-                          View(await _context.Labels.ToListAsync()) :
+                          View(await _context.Labels.OrderBy(x => x.Name).ToListAsync()) :
                           Problem("Entity set 'WdtbContext.Labels'  is null.");
         }
 

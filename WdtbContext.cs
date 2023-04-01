@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using IJW2.Models;
+using MusBase.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace IJW2;
+namespace MusBase;
 
 public partial class WdtbContext : DbContext
 {

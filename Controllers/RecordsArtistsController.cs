@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using IJW2;
-using IJW2.Models;
+using MusBase;
+using MusBase.Models;
 
-namespace IJW2.Controllers
+namespace MusBase.Controllers
 {
     public class RecordsArtistsController : Controller
     {

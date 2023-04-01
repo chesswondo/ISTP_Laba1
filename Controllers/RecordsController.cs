@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using IJW2.Models;
+using MusBase.Models;
 using static System.Net.Mime.MediaTypeNames;
 using System.IO;
 
-namespace IJW2.Controllers
+namespace MusBase.Controllers
 {
     public class RecordsController : Controller
     {
@@ -163,8 +163,6 @@ namespace IJW2.Controllers
         
         public async Task<IActionResult> Delete(int id, int GenreId)
         {
-            //ViewBag.GenreId = GenreId;
-            //ViewBag.Id = id;
             using (StreamWriter writer = new StreamWriter("text_id.txt", false))
             {
                 await writer.WriteLineAsync(id.ToString());

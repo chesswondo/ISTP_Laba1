@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using IJW2;
-using IJW2.Models;
+using MusBase;
+using MusBase.Models;
 
-namespace IJW2.Controllers
+namespace MusBase.Controllers
 {
     public class ArtistsController : Controller
     {
@@ -23,7 +23,7 @@ namespace IJW2.Controllers
         public async Task<IActionResult> Index()
         {
             var wdtbContext = _context.Artists.Include(a => a.Country).Include(a => a.Label);
-            return View(await wdtbContext.ToListAsync());
+            return View(await wdtbContext.OrderBy(x => x.Name).ToListAsync());
         }
 
         // GET: Artists/Details/5
@@ -49,8 +49,8 @@ namespace IJW2.Controllers
         // GET: Artists/Create
         public IActionResult Create()
         {
-            ViewData["CountryId"] = new SelectList(_context.Countries, "Id", "Name");
-            ViewData["LabelId"] = new SelectList(_context.Labels, "Id", "Name");
+            ViewData["CountryId"] = new SelectList(_context.Countries.OrderBy(x => x.Name), "Id", "Name");
+            ViewData["LabelId"] = new SelectList(_context.Labels.OrderBy(x => x.Name), "Id", "Name");
             return View();
         }
 

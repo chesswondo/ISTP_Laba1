@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using IJW2;
-using IJW2.Models;
+using MusBase;
+using MusBase.Models;
+using System.Net;
 
-namespace IJW2.Controllers
+namespace MusBase.Controllers
 {
     public class CountriesController : Controller
     {
@@ -23,7 +24,7 @@ namespace IJW2.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Countries != null ? 
-                          View(await _context.Countries.ToListAsync()) :
+                          View(await _context.Countries.OrderBy(x => x.Name).ToListAsync()) :
                           Problem("Entity set 'WdtbContext.Countries'  is null.");
         }
 
@@ -48,6 +49,7 @@ namespace IJW2.Controllers
         // GET: Countries/Create
         public IActionResult Create()
         {
+
             return View();
         }
 

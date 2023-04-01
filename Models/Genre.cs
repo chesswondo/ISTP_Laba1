@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace IJW2.Models;
+namespace MusBase.Models;
 
 public partial class Genre
 {

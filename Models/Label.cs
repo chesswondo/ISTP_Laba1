@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace IJW2.Models;
+namespace MusBase.Models;
 
 public partial class Label
 {

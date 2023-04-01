@@ -8,7 +8,7 @@
 <h1>Альбоми за жанром @ViewBag.GenreName </h1>
 
 <p>
-    @*<a asp-action="Create">Create New</a>*@
+    @*<a asp-action="Create">Додати новий</a>*@
     @*<a asp-action="Create" asp-route-id="@ViewBag.GenreId">Додати новий альбом</a>*@
     @Html.ActionLink("Додати новий альбом", "Create", new {GenreId = ViewBag.GenreId})
 </p>
@@ -52,8 +52,8 @@
                 @Html.DisplayFor(modelItem => item.Information)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id">Змінити</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Деталі</a> |
                 @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
                 @Html.ActionLink("Видалити", "Delete", new {id = @item.Id, GenreId = ViewBag.GenreId})
             </td>

@@ -1,8 +1,8 @@
-﻿using IJW2.Models;
+﻿using MusBase.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace IJW2.Controllers
+namespace MusBase.Controllers
 {
     public class HomeController : Controller
     {
