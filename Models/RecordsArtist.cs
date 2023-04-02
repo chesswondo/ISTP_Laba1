@@ -11,7 +11,7 @@ public partial class RecordsArtist
 
     public int RecordId { get; set; }
 
-    public virtual Artist Artist { get; set; } = null!;
+    public virtual Artist? Artist { get; set; } = null!;
 
-    public virtual Record Record { get; set; } = null!;
+    public virtual Record? Record { get; set; } = null!;
 }

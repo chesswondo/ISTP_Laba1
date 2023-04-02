@@ -42,7 +42,7 @@ namespace MusBase.Controllers
                 return NotFound();
             }
 
-            return RedirectToAction("Index", "Records", new {id = genre.Id, name = genre.Name});
+            return RedirectToAction("Index", "Records", new {some_id = genre.Id, name = genre.Name, source = "genre"});
             //return View(genre);
         }
 

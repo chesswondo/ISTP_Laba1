@@ -46,7 +46,17 @@
     <form asp-action="Delete">
         @*<input type="hidden" asp-for="Id" />*@
         <input type="hidden" value="Id" name="id"/>
-        <input type="hidden" value="@ViewBag.GenreId" name="GenreId"/>
+        @if (ViewBag.GenreId != null)
+        {
+            <input type="hidden" value="@ViewBag.GenreId" name="some_id" />
+            <input type="hidden" value="genre" name="source" />
+        }
+        @if (ViewBag.ArtistId != null)
+        {
+            <input type="hidden" value="@ViewBag.ArtistId" name="some_id" />
+            <input type="hidden" value="artist" name="source" />
+        }
+        
         <input type="submit" value="Видалити" class="btn btn-danger" /> |
         <a asp-action="Index">Повернутися до списку</a>
     </form>

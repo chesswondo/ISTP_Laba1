@@ -43,7 +43,7 @@ namespace MusBase.Controllers
                 return NotFound();
             }
 
-            return View(artist);
+            return RedirectToAction("Index", "Records", new { some_id = artist.Id, name = artist.Name, source = "artist" });
         }
 
         // GET: Artists/Create

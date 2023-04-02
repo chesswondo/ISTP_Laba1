@@ -1,17 +1,30 @@
 ﻿@model IEnumerable<Record>
 
-@{
+@if (ViewBag.GenreId != null)
+{
     ViewData["Title"] = "Альбоми за жанром";
 }
 
-@*<h1>Index</h1>*@
-<h1>Альбоми за жанром @ViewBag.GenreName </h1>
+@if (ViewBag.ArtistId != null)
+{
+    ViewData["Title"] = "Альбоми виконавця";
+}
 
-<p>
-    @*<a asp-action="Create">Додати новий</a>*@
-    @*<a asp-action="Create" asp-route-id="@ViewBag.GenreId">Додати новий альбом</a>*@
-    @Html.ActionLink("Додати новий альбом", "Create", new {GenreId = ViewBag.GenreId})
-</p>
+
+@*<h1>Index</h1>*@
+<h1>Альбоми @ViewBag.GenreName @ViewBag.ArtistName </h1>
+
+@if (ViewBag.GenreId != null)
+{
+    @Html.ActionLink("Додати новий альбом", "Create", new { some_id = ViewBag.GenreId, source = "genre" })
+    ;
+}
+@if (ViewBag.ArtistId != null)
+{
+    @Html.ActionLink("Додати новий альбом", "Create", new { some_id = ViewBag.ArtistId, source = "artist" })
+    ;
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -55,8 +68,15 @@
                 <a asp-action="Edit" asp-route-id="@item.Id">Змінити</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Деталі</a> |
                 @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
-                @Html.ActionLink("Видалити", "Delete", new {id = @item.Id, GenreId = ViewBag.GenreId})
-            </td>
+                    @if (ViewBag.GenreId != null)
+                    {
+                        @Html.ActionLink("Видалити", "Delete", new {id = @item.Id, some_id = ViewBag.GenreId, source = "genre"})
+                    }
+                    @if (ViewBag.ArtistId != null)
+                    {
+                        @Html.ActionLink("Видалити", "Delete", new {id = @item.Id, some_id = ViewBag.ArtistId, source = "artist"})
+                    }
+                </td>
         </tr>
 }
     </tbody>
