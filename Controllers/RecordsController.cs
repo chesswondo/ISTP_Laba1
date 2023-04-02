@@ -43,7 +43,7 @@ namespace MusBase.Controllers
                 return View(await RecordsByGenre.OrderBy(x => x.Name).ToListAsync());
             }
 
-            else
+            else if (source == "artist")
             {
                 ViewBag.ArtistId = some_id;
                 ViewBag.ArtistName = name;
@@ -60,6 +60,42 @@ namespace MusBase.Controllers
                 return View(await RecordsByArtist.OrderBy(x => x.Name).ToListAsync());
             }
 
+            /*
+            else if (source == "label")
+            {
+                ViewBag.LabelId = some_id;
+                ViewBag.LabelName = name;
+
+                var RecordsArtistsByArtist = _context.RecordsArtists.Where(ra => ra.ArtistId == some_id).Include(ra => ra.Artist).ToList();
+                List<int> RecordsList = new List<int>();
+                foreach (var record in RecordsArtistsByArtist)
+                {
+                    RecordsList.Add(record.RecordId);
+                }
+
+                var RecordsByArtist = _context.Records.Where(r => RecordsList.Contains(r.Id));
+
+                return View(await RecordsByArtist.OrderBy(x => x.Name).ToListAsync());
+            }
+            
+            else if (source == "artist")
+            {
+                ViewBag.ArtistId = some_id;
+                ViewBag.ArtistName = name;
+
+                var RecordsArtistsByArtist = _context.RecordsArtists.Where(ra => ra.ArtistId == some_id).Include(ra => ra.Artist).ToList();
+                List<int> RecordsList = new List<int>();
+                foreach (var record in RecordsArtistsByArtist)
+                {
+                    RecordsList.Add(record.RecordId);
+                }
+
+                var RecordsByArtist = _context.Records.Where(r => RecordsList.Contains(r.Id));
+
+                return View(await RecordsByArtist.OrderBy(x => x.Name).ToListAsync());
+            }*/
+
+            return RedirectToAction("Index", "Home");
         }
 
 

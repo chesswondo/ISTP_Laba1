@@ -12,7 +12,7 @@
 
 
 @*<h1>Index</h1>*@
-<h1>Альбоми @ViewBag.GenreName @ViewBag.ArtistName </h1>
+<h1>Альбоми @ViewBag.GenreName @ViewBag.ArtistName @ViewBag.LabelName @ViewBag.CountryName</h1>
 
 @if (ViewBag.GenreId != null)
 {
@@ -24,6 +24,17 @@
     @Html.ActionLink("Додати новий альбом", "Create", new { some_id = ViewBag.ArtistId, source = "artist" })
     ;
 }
+@if (ViewBag.LabelId != null)
+{
+    @Html.ActionLink("Додати новий альбом", "Create", new { some_id = ViewBag.LabelId, source = "label" })
+    ;
+}
+@if (ViewBag.CountryId != null)
+{
+    @Html.ActionLink("Додати новий альбом", "Create", new { some_id = ViewBag.CountryId, source = "country" })
+    ;
+}
+
 
 <table class="table">
     <thead>
@@ -67,7 +78,6 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Змінити</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Деталі</a> |
-                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
                     @if (ViewBag.GenreId != null)
                     {
                         @Html.ActionLink("Видалити", "Delete", new {id = @item.Id, some_id = ViewBag.GenreId, source = "genre"})
@@ -75,6 +85,14 @@
                     @if (ViewBag.ArtistId != null)
                     {
                         @Html.ActionLink("Видалити", "Delete", new {id = @item.Id, some_id = ViewBag.ArtistId, source = "artist"})
+                    }
+                    @if (ViewBag.LabelId != null)
+                    {
+                        @Html.ActionLink("Видалити", "Delete", new {id = @item.Id, some_id = ViewBag.LabelId, source = "label"})
+                    }
+                    @if (ViewBag.CountryId != null)
+                    {
+                        @Html.ActionLink("Видалити", "Delete", new {id = @item.Id, some_id = ViewBag.CountryId, source = "country"})
                     }
                 </td>
         </tr>

@@ -39,6 +39,8 @@
                 <span asp-validation-for="Information" class="text-danger"></span>
             </div>
 
+
+
             @if (ViewBag.GenreId != null)
             {
                 <input type="hidden" value="@ViewBag.GenreId" name="some_id" />
@@ -50,6 +52,20 @@
                 <input type="hidden" value="@ViewBag.ArtistId" name="some_id" />
                 <input type="hidden" value="artist" name="source" />
             }
+
+            @if (ViewBag.LabelId != null)
+            {
+                <input type="hidden" value="@ViewBag.LabelId" name="some_id" />
+                <input type="hidden" value="label" name="source" />
+            }
+
+            @if (ViewBag.CountryId != null)
+            {
+                <input type="hidden" value="@ViewBag.CountryId" name="some_id" />
+                <input type="hidden" value="country" name="source" />
+            }
+
+
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

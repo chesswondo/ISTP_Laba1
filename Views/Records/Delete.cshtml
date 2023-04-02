@@ -44,8 +44,8 @@
     </dl>
     
     <form asp-action="Delete">
-        @*<input type="hidden" asp-for="Id" />*@
         <input type="hidden" value="Id" name="id"/>
+        
         @if (ViewBag.GenreId != null)
         {
             <input type="hidden" value="@ViewBag.GenreId" name="some_id" />
@@ -55,6 +55,16 @@
         {
             <input type="hidden" value="@ViewBag.ArtistId" name="some_id" />
             <input type="hidden" value="artist" name="source" />
+        }
+        @if (ViewBag.LabelId != null)
+        {
+            <input type="hidden" value="@ViewBag.LabelId" name="some_id" />
+            <input type="hidden" value="label" name="source" />
+        }
+        @if (ViewBag.CountryId != null)
+        {
+            <input type="hidden" value="@ViewBag.CountryId" name="some_id" />
+            <input type="hidden" value="country" name="source" />
         }
         
         <input type="submit" value="Видалити" class="btn btn-danger" /> |
