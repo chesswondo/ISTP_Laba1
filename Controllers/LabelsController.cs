@@ -42,7 +42,8 @@ namespace MusBase.Controllers
                 return NotFound();
             }
 
-            return View(label);
+            return RedirectToAction("Index", "Records", new { some_id = label.Id, name = label.Name, source = "label" });
+            //return View(label);
         }
 
         // GET: Labels/Create

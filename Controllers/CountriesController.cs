@@ -43,7 +43,8 @@ namespace MusBase.Controllers
                 return NotFound();
             }
 
-            return View(country);
+            return RedirectToAction("Index", "Records", new { some_id = country.Id, name = country.Name, source = "country" });
+            //return View(country);
         }
 
         // GET: Countries/Create

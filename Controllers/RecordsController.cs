@@ -60,40 +60,41 @@ namespace MusBase.Controllers
                 return View(await RecordsByArtist.OrderBy(x => x.Name).ToListAsync());
             }
 
-            /*
+            
             else if (source == "label")
             {
                 ViewBag.LabelId = some_id;
                 ViewBag.LabelName = name;
 
-                var RecordsArtistsByArtist = _context.RecordsArtists.Where(ra => ra.ArtistId == some_id).Include(ra => ra.Artist).ToList();
-                List<int> RecordsList = new List<int>();
-                foreach (var record in RecordsArtistsByArtist)
+                var ArtistsByLabel = _context.Artists.Where(a => a.LabelId == some_id).ToList();
+                List<int> ArtistIdList = new List<int>();
+                foreach (var artist in ArtistsByLabel)
                 {
-                    RecordsList.Add(record.RecordId);
+                    ArtistIdList.Add(artist.Id);
                 }
 
-                var RecordsByArtist = _context.Records.Where(r => RecordsList.Contains(r.Id));
+                var RecordsByLabel = _context.Records.Where(r => ArtistIdList.Contains(r.ArtistId));
 
-                return View(await RecordsByArtist.OrderBy(x => x.Name).ToListAsync());
+                return View(await RecordsByLabel.OrderBy(x => x.Name).ToListAsync());
             }
             
-            else if (source == "artist")
+            
+            else if (source == "country")
             {
-                ViewBag.ArtistId = some_id;
-                ViewBag.ArtistName = name;
+                ViewBag.CountryId = some_id;
+                ViewBag.CountryName = name;
 
-                var RecordsArtistsByArtist = _context.RecordsArtists.Where(ra => ra.ArtistId == some_id).Include(ra => ra.Artist).ToList();
-                List<int> RecordsList = new List<int>();
-                foreach (var record in RecordsArtistsByArtist)
+                var ArtistsByCountry = _context.Artists.Where(a => a.CountryId == some_id).ToList();
+                List<int> ArtistIdList = new List<int>();
+                foreach (var artist in ArtistsByCountry)
                 {
-                    RecordsList.Add(record.RecordId);
+                    ArtistIdList.Add(artist.Id);
                 }
 
-                var RecordsByArtist = _context.Records.Where(r => RecordsList.Contains(r.Id));
+                var RecordsByLabel = _context.Records.Where(r => ArtistIdList.Contains(r.ArtistId));
 
-                return View(await RecordsByArtist.OrderBy(x => x.Name).ToListAsync());
-            }*/
+                return View(await RecordsByLabel.OrderBy(x => x.Name).ToListAsync());
+            }
 
             return RedirectToAction("Index", "Home");
         }
@@ -131,7 +132,19 @@ namespace MusBase.Controllers
                 ViewBag.ArtistId = some_id;
                 ViewBag.ArtistName = _context.Artists.Where(a => a.Id == some_id).FirstOrDefault().Name;
             }
-            
+
+            else if (source == "label")
+            {
+                ViewBag.LabelId = some_id;
+                ViewBag.LabelName = _context.Labels.Where(l => l.Id == some_id).FirstOrDefault().Name;
+            }
+
+            else if (source == "country")
+            {
+                ViewBag.CountryId = some_id;
+                ViewBag.CountryName = _context.Countries.Where(c => c.Id == some_id).FirstOrDefault().Name;
+            }
+
             return View();
         }
 
@@ -173,7 +186,37 @@ namespace MusBase.Controllers
                     _context.SaveChanges();
                     return RedirectToAction("Index", "Records", new { some_id = some_id, name = _context.Artists.Where(a => a.Id == some_id).FirstOrDefault().Name, source = "artist" });
                 }
-                
+
+                /*else if (source == "label")
+                {
+                    
+                    
+                    
+                    
+                    var ra = new RecordsArtist
+                    {
+                        RecordId = @record.Id,
+                        ArtistId = some_id,
+                    };
+
+                    _context.RecordsArtists.Add(ra);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index", "Records", new { some_id = some_id, name = _context.Artists.Where(a => a.Id == some_id).FirstOrDefault().Name, source = "artist" });
+                }
+
+                else if (source == "artist")
+                {
+                    var ra = new RecordsArtist
+                    {
+                        RecordId = @record.Id,
+                        ArtistId = some_id,
+                    };
+
+                    _context.RecordsArtists.Add(ra);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index", "Records", new { some_id = some_id, name = _context.Artists.Where(a => a.Id == some_id).FirstOrDefault().Name, source = "artist" });
+                }
+                */
             }
 
             return RedirectToAction("Index", "Home");
