@@ -144,18 +144,6 @@ namespace MusBase.Controllers
                 ViewBag.ArtistName = _context.Artists.Where(a => a.Id == some_id).FirstOrDefault().Name;
             }
 
-            else if (source == "label")
-            {
-                ViewBag.LabelId = some_id;
-                ViewBag.LabelName = _context.Labels.Where(l => l.Id == some_id).FirstOrDefault().Name;
-            }
-
-            else if (source == "country")
-            {
-                ViewBag.CountryId = some_id;
-                ViewBag.CountryName = _context.Countries.Where(c => c.Id == some_id).FirstOrDefault().Name;
-            }
-
             return View();
         }
 
@@ -197,37 +185,6 @@ namespace MusBase.Controllers
                     _context.SaveChanges();
                     return RedirectToAction("Index", "Records", new { some_id = some_id, name = _context.Artists.Where(a => a.Id == some_id).FirstOrDefault().Name, source = "artist" });
                 }
-
-                /*else if (source == "label")
-                {
-                    
-                    
-                    
-                    
-                    var ra = new RecordsArtist
-                    {
-                        RecordId = @record.Id,
-                        ArtistId = some_id,
-                    };
-
-                    _context.RecordsArtists.Add(ra);
-                    _context.SaveChanges();
-                    return RedirectToAction("Index", "Records", new { some_id = some_id, name = _context.Artists.Where(a => a.Id == some_id).FirstOrDefault().Name, source = "artist" });
-                }
-
-                else if (source == "artist")
-                {
-                    var ra = new RecordsArtist
-                    {
-                        RecordId = @record.Id,
-                        ArtistId = some_id,
-                    };
-
-                    _context.RecordsArtists.Add(ra);
-                    _context.SaveChanges();
-                    return RedirectToAction("Index", "Records", new { some_id = some_id, name = _context.Artists.Where(a => a.Id == some_id).FirstOrDefault().Name, source = "artist" });
-                }
-                */
             }
 
             return RedirectToAction("Index", "Home");
@@ -352,22 +309,30 @@ namespace MusBase.Controllers
             var @record = await _context.Records.FindAsync(del_Id);
 
 
+
+            _context.RecordsGenres.RemoveRange(_context.RecordsGenres.Where(rg => rg.RecordId == del_Id));
+            _context.RecordsArtists.RemoveRange(_context.RecordsArtists.Where(ra => ra.RecordId == del_Id));
+            if (record != null) _context.Records.Remove(@record);
+            await _context.SaveChangesAsync();
+
             if (del_source == "genre")
             {
-                _context.RecordsGenres.RemoveRange(_context.RecordsGenres.Where(rg => rg.RecordId == del_Id));
-                if (record != null) _context.Records.Remove(@record);
-                await _context.SaveChangesAsync();
-
                 return RedirectToAction("Index", "Records", new { some_id = del_someId, name = _context.Genres.Where(g => g.Id == del_someId).FirstOrDefault().Name, source = "genre" });
             }
 
             else if (del_source == "artist")
             {
-                _context.RecordsArtists.RemoveRange(_context.RecordsArtists.Where(ra => ra.RecordId == del_Id));
-                if (record != null) _context.Records.Remove(@record);
-                await _context.SaveChangesAsync();
-
                 return RedirectToAction("Index", "Records", new { some_id = del_someId, name = _context.Artists.Where(a => a.Id == del_someId).FirstOrDefault().Name, source = "artist" });
+            }
+
+            else if (del_source == "label")
+            {
+                return RedirectToAction("Index", "Records", new { some_id = del_someId, name = _context.Labels.Where(l => l.Id == del_someId).FirstOrDefault().Name, source = "label" });
+            }
+
+            else if (del_source == "country")
+            {
+                return RedirectToAction("Index", "Records", new { some_id = del_someId, name = _context.Countries.Where(c => c.Id == del_someId).FirstOrDefault().Name, source = "country" });
             }
 
 

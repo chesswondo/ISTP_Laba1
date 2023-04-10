@@ -5,7 +5,10 @@
 }
 
 @*<h1>Create</h1>*@
-<h1>Додавання нового альбома до жанру @ViewBag.GenreName</h1>
+@if (ViewBag.GenreId != null) {<h1>Додавання нового альбома до жанру @ViewBag.GenreName</h1>}
+@if (ViewBag.ArtistId != null) {<h1>Додавання нового альбома до виконавця @ViewBag.ArtistName</h1>}
+@if (ViewBag.LabelId != null) {<h1>Додавання нового альбома до лейблу @ViewBag.LabelName</h1>}
+@if (ViewBag.CountryId != null) {<h1>Додавання нового альбома до країни @ViewBag.CountryName</h1>}
 
 <h4>Record</h4>
 <hr />
