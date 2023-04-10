@@ -50,7 +50,7 @@
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
-            $.get('/api/Chart/JsonData', function (JsonData_GenRec) {
+            $.get('/api/Chart/JsonData_GenRec', function (JsonData_GenRec) {
                 var data = google.visualization.arrayToDataTable(JsonData_GenRec, false);
                 var options =
                 {

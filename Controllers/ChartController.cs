@@ -15,7 +15,7 @@ namespace MusBase.Controllers
             _context = context;
         }
 
-        [HttpGet("JsonData")]
+        [HttpGet("JsonData_GenRec")]
 
         public JsonResult JsonData_GenRec()
         {
@@ -25,7 +25,7 @@ namespace MusBase.Controllers
             foreach (var genre in genres)
             {
                 List<int> RecordsList = new List<int>();
-                foreach (var recordgenre in _context.RecordsGenres)
+                foreach (var recordgenre in _context.RecordsGenres.ToList())
                 {
                     if (recordgenre.GenreId == genre.Id) RecordsList.Add(recordgenre.RecordId);
                 }
@@ -36,5 +36,31 @@ namespace MusBase.Controllers
             return new JsonResult(catGenres);
         }
 
+        [HttpGet("JsonData_CountryRec")]
+        public JsonResult JsonData_CountryRec()
+        {
+            var countries = _context.Countries.ToList();
+            List<object> catCountries = new List<object>();
+            catCountries.Add(new[] { "Країна", "Кількість альбомів" });
+            
+            foreach (var country in countries)
+            {
+                List<int> RecordsList = new List<int>();
+                foreach (var artist in _context.Artists.ToList())
+                {
+                    if (artist.CountryId == country.Id)
+                    {
+                        foreach (var rec_art in _context.RecordsArtists.ToList())
+                        {
+                            if (rec_art.ArtistId == artist.Id) RecordsList.Add(rec_art.RecordId);
+                        }
+                    }
+                }
+
+                catCountries.Add(new object[] { country.Name, RecordsList.Count });
+            }
+
+            return new JsonResult(catCountries);
+        }
     }
 }
