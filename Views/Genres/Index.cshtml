@@ -50,8 +50,8 @@
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
-            $.get('/api/Chart/JsonData', function (JsonData) {
-                var data = google.visualization.arrayToDataTable(JsonData, false);
+            $.get('/api/Chart/JsonData', function (JsonData_GenRec) {
+                var data = google.visualization.arrayToDataTable(JsonData_GenRec, false);
                 var options =
                 {
                     title: "Співвідношення кількості альбомів по жанрам",

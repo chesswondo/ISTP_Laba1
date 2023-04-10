@@ -17,7 +17,7 @@ namespace MusBase.Controllers
 
         [HttpGet("JsonData")]
 
-        public JsonResult JsonData()
+        public JsonResult JsonData_GenRec()
         {
             var genres = _context.Genres.ToList();
             List<object> catGenres = new List<object>();

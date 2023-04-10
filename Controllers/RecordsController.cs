@@ -65,7 +65,7 @@ namespace MusBase.Controllers
             {
                 ViewBag.LabelId = some_id;
                 ViewBag.LabelName = name;
-
+                                
                 var ArtistsByLabel = _context.Artists.Where(a => a.LabelId == some_id).ToList();
                 List<int> ArtistIdList = new List<int>();
                 foreach (var artist in ArtistsByLabel)
@@ -73,8 +73,13 @@ namespace MusBase.Controllers
                     ArtistIdList.Add(artist.Id);
                 }
 
-                var RecordsByLabel = _context.Records.Where(r => ArtistIdList.Contains(r.ArtistId));
+                List<int> RecordIdList = new List<int>();
+                foreach(var rec_art in _context.RecordsArtists.ToList())
+                {
+                    if (ArtistIdList.Contains(rec_art.ArtistId)) RecordIdList.Add(rec_art.RecordId);
+                }
 
+                var RecordsByLabel = _context.Records.Where(r => RecordIdList.Contains(r.Id));
                 return View(await RecordsByLabel.OrderBy(x => x.Name).ToListAsync());
             }
             
@@ -91,14 +96,20 @@ namespace MusBase.Controllers
                     ArtistIdList.Add(artist.Id);
                 }
 
-                var RecordsByLabel = _context.Records.Where(r => ArtistIdList.Contains(r.ArtistId));
+                List<int> RecordIdList = new List<int>();
+                foreach (var rec_art in _context.RecordsArtists.ToList())
+                {
+                    if (ArtistIdList.Contains(rec_art.ArtistId)) RecordIdList.Add(rec_art.RecordId);
+                }
 
-                return View(await RecordsByLabel.OrderBy(x => x.Name).ToListAsync());
+                var RecordsByCountry = _context.Records.Where(r => RecordIdList.Contains(r.Id));
+                return View(await RecordsByCountry.OrderBy(x => x.Name).ToListAsync());
             }
+            
 
             return RedirectToAction("Index", "Home");
         }
-
+            
 
         // GET: Records/Details/5
         public async Task<IActionResult> Details(int? id)
