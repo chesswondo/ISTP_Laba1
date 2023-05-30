@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Result";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            @foreach (var label in ViewBag.Labels)
+            {
+                <th>
+                    @label
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in ViewBag.Results)
+        {
+            <tr>
+                @foreach (var text in record)
+                {
+                    <td>
+                        @text
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<p>@ViewBag.SQLReq</p>
+@if (ViewBag.n != 0)
+{
+    <p>Parameter n = @ViewBag.n</p>
+}
+
+
+<p>
+    <a asp-action="Index"><button class="btn btn-primary">Назад</button></a>
+</p>

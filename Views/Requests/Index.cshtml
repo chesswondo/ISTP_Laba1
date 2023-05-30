@@ -1,0 +1,98 @@
+﻿@model IJW2.Controllers.RequestsController
+@{
+    ViewData["Title"] = "Requests";
+}
+
+<h2>Прості параметризовані запити:</h2>
+
+<form asp-action="Q1">
+    <table>
+        <tr>
+            <td>1. Альбоми, що належать виконавцям, які мають не менше &ensp;</td>
+            <td><input name="n" style="max-width:80px" />
+            <td>&ensp; альбомів &ensp;</td>
+            <td><input type="submit" value="Пошук" class="btn btn-primary" /></td>
+        </tr>
+    </table>
+</form>
+
+
+<form asp-action="Q2">
+    <table>
+        <tr>
+            <td>2. Країни, в яких є хоча б один виконавець, що випустив рівно &ensp;</td>
+            <td><input name="n" style="max-width:80px" />
+            <td>&ensp; альбомів &ensp;</td>
+            <td><input type="submit" value="Пошук" class="btn btn-primary" /></td>
+        </tr>
+    </table>
+</form>
+
+
+<form asp-action="Q3">
+    <table>
+        <tr>
+            <td>3. Всі країни, в яких виконавці сумарно підписані на не менше, ніж &ensp;</td>
+            <td><input name="n" style="max-width:80px" />
+            <td>&ensp; різних лейблів &ensp;</td>
+            <td><input type="submit" value="Пошук" class="btn btn-primary" /></td>
+        </tr>
+    </table>
+</form>
+
+
+<form asp-action="Q4">
+    <table>
+        <tr>
+            <td>4. Усі альбоми, виконані в перших &ensp;</td>
+            <td><input name="n" style="max-width:80px" />
+            <td>&ensp; жанрах за кількістю альбомів у кожному &ensp;</td>
+            <td><input type="submit" value="Пошук" class="btn btn-primary" /></td>
+        </tr>
+    </table>
+</form>
+
+
+<form asp-action="Q5">
+    <table>
+        <tr>
+            <td>5. Перші &ensp;</td>
+            <td><input name="n" style="max-width:80px" />
+            <td>&ensp; країн, виконавці з яких підписані на найбільшу сумарну кількість різних лейблів &ensp;</td>
+            <td><input type="submit" value="Пошук" class="btn btn-primary" /></td>
+        </tr>
+    </table>
+</form>
+
+
+<h2>Запити з множинним порівнянням:</h2>
+
+
+<form asp-action="Q6">
+    <table>
+        <tr>
+            <td>6. Всі пари записів, у яких однакова множина жанрів та однакова якість звуку &ensp;</td>
+            <td><input type="submit" value="Пошук" class="btn btn-primary" /></td>
+        </tr>
+    </table>
+</form>
+
+
+<form asp-action="Q7">
+    <table>
+        <tr>
+            <td>7. Всі пари лейблів, на які підписана однакова кількість виконавців &ensp;</td>
+            <td><input type="submit" value="Пошук" class="btn btn-primary" /></td>
+        </tr>
+    </table>
+</form>
+
+
+<form asp-action="Q8">
+    <table>
+        <tr>
+            <td>8. Всі пари лейблів, на яких підписані виконавці, чия сумарна множина країн походження співпадає &ensp;</td>
+            <td><input type="submit" value="Пошук" class="btn btn-primary" /></td>
+        </tr>
+    </table>
+</form>
