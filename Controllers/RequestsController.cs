@@ -5,6 +5,7 @@ using MusBase.Models;
 using System.Diagnostics;
 using Microsoft.Data.SqlClient;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace IJW2.Controllers
 {
@@ -171,7 +172,6 @@ namespace IJW2.Controllers
         {
             QV.labels = new List<string> { "Name1", "Name2" };
             QV.results = new List<List<object>>();
-
 
             var result = from x in _context.Records
                          join y in _context.Records on x.Quality equals y.Quality into temp

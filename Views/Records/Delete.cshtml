@@ -43,7 +43,7 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete">
+    <form asp-controller="Records" asp-action="Delete">
         <input type="hidden" value="Id" name="id"/>
         
         @if (ViewBag.GenreId != null)
@@ -68,6 +68,6 @@
         }
         
         <input type="submit" value="Видалити" class="btn btn-danger" /> |
-        <a asp-action="Index">Повернутися до списку</a>
+        <a asp-controller="Records" asp-action="Index">Повернутися до списку</a>
     </form>
 </div>
